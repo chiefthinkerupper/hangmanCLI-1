@@ -2,7 +2,7 @@
 
 function HangmanLetter(letter, guessedCorrectly){
 	this.letter = letter;
-	this.guessedCorrectly = guessedCorretly;
+	this.guessedCorrectly = guessedCorrectly;
 	this.display = function(){
 		if(this.guessedCorrectly){
 			return this.letter

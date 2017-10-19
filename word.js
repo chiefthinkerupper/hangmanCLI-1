@@ -10,46 +10,50 @@
 
 
 //require the letter
-var letter =require("./letter.js");
+var HangmanLetter =require("./letter.js");
 
-var Word = function(){
-
-	//multiple words that could be used for the game
-	//this.wordArr = ["apple","carrot","cookie","banana"];
-
-	//what i want the user to guess
-	this.guessWord = "apple";
-	this.tempWord = [];
-	this.numGuess = 10;
-
-
-	//randomly pick at word
-	/*
-	 this.pickWord = function(){
-
-	 	console.log(wordArr.length);
-
-	 }
-	 */
+//create the word constructor
+var Word = function(word){
 	//the word the user would guess
+	this.word = word;
 
-	//check if the letter is guessed
-	this.newLetter = function(letter, guessedCorrectly) {
-		for(var i = 0; i<this.guessWord; i++){
-			var newletter = new HangmanLetter(letter, guessedCorrectly);
-    		console.log(newLetter.letter);
+	//array of the word that is being guessed
+	this.wordArray = this.word.split("");
 
-		}
+	//an array the holds all the hangman correct letters and underscore for
+	//letters not yet guessed
+	this.displayWord = [];
 
-    
+	//letters that guessed
+	this.guessLetters = [];
+
+	//create a function that checks if the user guessed the right letter
+	this.newLetter = function(userLetter) {
+		//for every letter that user guesses 
+		this.guessLetters.push(userLetter);
+
+		//instance of the HangmanLetter
+		//the letter that the user guesses
+		var letter; 
+		for(var i = 0; i<this.wordArray.length; i++){
+			if(this.wordArray[i] === userLetter){
+			 letter = new HangmanLetter(userLetter, true);
+			 this.displayWord.push(letter.display());
+			}
+			else{
+				letter = new HangmanLetter(userLetter,false);
+				this.displayWord.push(letter.display());
+			}
+			
+    		
+
+		}   
+		console.log(this.displayWord);
 
   };
-
 	
 }
 
-var myWord = new Word();
-myWord.pickWord();
-
+//var gameWord = new Word("apple");
 
 module.exports = Word;
