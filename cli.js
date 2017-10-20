@@ -4,11 +4,39 @@ var Word =require("./word.js");
 //the word that user will try to guess
 var gameWord = new Word("apple");
 
+
 //load the inquirer prompt questions
+//while loop the prompt
+
+
+
+
+
+//if game function end
+//else question
+
+//this function is suppose to be my base case for recursion
+function checkWordGuess(wordForGame){
+	//get the current display word that contains correct letter guesses
+	//and underscores. Join the array together to create on string
+	var userWordDisplayGuess = wordForGame.displayWord.join("");
+	//if the display word is equal to the word that the user needs to guess
+	if(userWordDisplayGuess === wordForGame.word){
+		//print you when
+		console.log("You win!")
+		return true
+	}else{
+		console.log("Keep 'em guesses coming!")
+		return false
+
+	}
+
+}
+
+//var endGame = checkWordGuess(gameWord);
+
 function question(){
-	//while loop the prompt
-	var count =9;
-	while()
+
 inquirer.prompt([{
 		type: "input",
 		name: "modeSelect",
@@ -18,49 +46,35 @@ inquirer.prompt([{
 		console.log(response.modeSelect);
 		gameWord.newLetter(response.modeSelect);
 
+
+		
+		//console.log(checkWordGuess(gameWord));
+
+
 	})
 
 }//end of question functions
 
-question();
+//question();
 
-/*
 
-function post(){
-	inquirer.prompt([
-	{
-		type: "input",
-		name: "name",
-		message: "What is the object's name you want to post?"
-		
-	},
 
-	{
-		type: "input",
-		name: "category",
-		message: "What is the object's category you want to post?"
-	},
+function askOrPerformFinalAction() {
+question()
 
-	{
-		type: "input",
-		name: "startBid",
-		message: "What is the object's starting price you want to post?"
-	}
-
-	]).then(function(postResponse){
-
-			createBid(postResponse.name,postResponse.category,postResponse.startBid);
-			question();
-
-	})
-
-//end of post function
-}
-
-function bid(){
-var array = readBids()
-
-//end of bid function
-}
-
+  if (checkWordGuess(gameWord)) {
+    console.log("You are a winner! Dolla Dolla Bill Yall!!!");
+    //return;
+  }
+  /*
+  else{
+  	 console.log(checkWordGuess(gameWord));
+  	 question()
+  }
 */
+ 
+
+}
+
+
+askOrPerformFinalAction()
