@@ -24,36 +24,80 @@ var Word = function(word){
 	//letters not yet guessed
 	this.displayWord = [];
 
-	//letters that guessed
-	this.guessLetters = [];
+	//holds every letter that is guessed
+	this.guessLetters =[];
+
+	//makes displayWord array entirely underscores
+	this.holderArray = function(){
+		for(var i =0; i<this.wordArray.length;i++){
+			this.displayWord.push("_");
+		}
+	}
 
 	//create a function that checks if the user guessed the right letter
 	this.newLetter = function(userLetter) {
-		//for every letter that user guesses 
+		
+		//every letter the user guesses push the letter
 		this.guessLetters.push(userLetter);
 
 		//instance of the HangmanLetter
-		//the letter that the user guesses
+		//checks to see if the user's guess is right
 		var letter; 
+
 		for(var i = 0; i<this.wordArray.length; i++){
-			if(this.wordArray[i] === userLetter){
+
+			//console.log(this.displayWord);
+
+			//if a letter already exsist then just display the word
+			if(this.displayWord[i] !="_"){
+				console.log(this.displayWord);
+			}
+			else if(this.wordArray[i] === userLetter && this.displayWord[i] === "_"){
 			 letter = new HangmanLetter(userLetter, true);
-			 this.displayWord.push(letter.display());
+			 this.displayWord[i]= letter.display();
+			 //this.guessLetters = this.displayWord.join("");
+
+			 //this.displayWord.push(letter.display());
 			}
 			else{
 				letter = new HangmanLetter(userLetter,false);
-				this.displayWord.push(letter.display());
-			}
-			
-    		
+				this.displayWord[i]= letter.display();
 
-		}   
-		console.log(this.displayWord);
+				//this.displayWord.push(letter.display());
+			}
+
+		}  
+
+
+		//this.display = this.wordArray.join("")
+
+		//console.log(this.displayWord);
+		return this.displayWord;
+		//this.guessLetters.push(this.displayWord);
+		//console.log(guessLetters.length)
 
   };
 	
 }
 
-//var gameWord = new Word("apple");
+var gameWord = new Word("apple");
+gameWord.holderArray();
+console.log(gameWord.displayWord);
+gameWord.newLetter("a");
+console.log(gameWord.displayWord);
+gameWord.newLetter("p");
+console.log(gameWord.displayWord);
+gameWord.newLetter("l");
+console.log(gameWord.displayWord);
+gameWord.newLetter("e");
+console.log(gameWord.displayWord);
+
+/*
+var newGuess = gameWord.newLetter("a");
+gameWord.displayWord = newGuess;
+console.log(newGuess);
+newGuess = gameWord.newLetter("p");
+console.log(gameWord.displayWord);
+*/
 
 module.exports = Word;
