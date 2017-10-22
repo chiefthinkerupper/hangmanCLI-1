@@ -4,21 +4,19 @@ var Word =require("./word.js");
 //the word that user will try to guess
 var gameWord = new Word("apple");
 
+//create an array the contains _ for all the letters
+gameWord.holderArray();
 
-//load the inquirer prompt questions
-//while loop the prompt
 
+//this function is the base case for recursion
+//if the user completely guesses the word then display true
+//else ask the question again
 
-//if game function end
-//else question
-
-//this function is suppose to be my base case for recursion
 function checkWordGuess(wordForGame){
 	//get the current display word that contains correct letter guesses
 	//and underscores. Join the array together to create on string
 	var userWordDisplayGuess = wordForGame.displayWord.join("");
 	console.log(userWordDisplayGuess);
-	//return userWordDisplayGuess
 	
 	//if the display word is equal to the word that the user needs to guess
 	if(userWordDisplayGuess === wordForGame.word){
@@ -31,9 +29,7 @@ function checkWordGuess(wordForGame){
 		//question();
 		return false
 
-	}
-	
-
+	}	
 }
 
 
@@ -53,18 +49,17 @@ inquirer.prompt([{
 			console.log(response.modeSelect);
 
 			//check to see if the user guessed right, if so replace the letter
-			var current = gameWord.newLetter(response.modeSelect);
+			gameWord.newLetter(response.modeSelect);
 
-			//replace the display word with the user guessed
-		    gameWord.displayWord = current;
+			
 		    console.log(gameWord.displayWord);
 			
 			//check to see if the word is guessed if not ask the question again
-			//var checking = checkWordGuess(gameWord);
-			//console.log(checking);
-			//if(checking === false){
-				//question()
-			//}
+			var checking = checkWordGuess(gameWord);
+			console.log(checking);
+			if(checking === false){
+				question()
+			}
 
 
 	})
