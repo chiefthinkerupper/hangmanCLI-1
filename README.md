@@ -8,6 +8,10 @@ This project was an exercise in using object constructors, using export/requires
 
 Clone the repo  
 
+```
+git clone https://github.com/zaynaib/hangmanCLI.git
+```
+
 Terminal commands 
 
 ```
